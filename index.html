@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Cryptocurrency Prices</title>
+  <style>
+    /* Add your CSS styles here */
+    .price {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+    .price-name {
+      font-weight: bold;
+    }
+    .price-value {
+      color: green;
+    }
+  </style>
+</head>
+<body>
+  <h1>Cryptocurrency Prices</h1>
+  <div id="prices">
+    <div class="price">
+      <span class="price-name">Monero:</span>
+      <span class="price-value" id="monero-price"></span>
+    </div>
+    <div class="price">
+      <span class="price-name">Bitcoin:</span>
+      <span class="price-value" id="bitcoin-price"></span>
+    </div>
+    <div class="price">
+      <span class="price-name">Ethereum:</span>
+      <span class="price-value" id="ethereum-price"></span>
+    </div>
+    <div class="price">
+      <span class="price-name">Litecoin:</span>
+      <span class="price-value" id="litecoin-price"></span>
+    </div>
+    <div class="price">
+      <span class="price-name">Ripple:</span>
+      <span class="price-value" id="ripple-price"></span>
+    </div>
+    <div class="price">
+      <span class="price-name">Stellar:</span>
+      <span class="price-value" id="stellar-price"></span>
+    </div>
+    <div class="price">
+      <span class="price-name">Tether:</span>
+      <span class="price-value" id="tether-price"></span>
+    </div>
+  </div>
+  <script src="./CryptocurrencyPrice.js"></script>
+  <script>
+    const price = new CryptocurrencyPrice();
+
+    async function getPrices() {
+      const moneroPrice = await price.getMoneroPrice();
+      const bitcoinPrice = await price.getBitcoinPrice();
+      const ethereumPrice = await price.getEthereumPrice();
+      const litecoinPrice = await price.getLitecoinPrice();
+      const ripplePrice = await price.getRipplePrice();
+      const stellarPrice = await price.getStellarPrice();
+      const tetherPrice = await price.getTetherPrice();
+
+      // Update the page to display the prices
+      document.getElementById("monero-price").innerHTML = moneroPrice;
+      document.getElementById("bitcoin-price").innerHTML = bitcoinPrice;
+      document.getElementById("ethereum-price").innerHTML = ethereumPrice;
+      document.getElementById("litecoin-price").innerHTML = litecoinPrice;
+      document.getElementById("ripple-price").innerHTML = ripplePrice;
+      document.getElementById("stellar-price").innerHTML = stellarPrice;
+      document.getElementById("tether-price").innerHTML = tetherPrice;
+    }
+
+    getPrices();
+
+    // Update the prices every 60 seconds
+    setInterval(getPrices, 60000);
+  </script>
+</body>
+</html>
